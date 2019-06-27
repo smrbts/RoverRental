@@ -113,8 +113,10 @@ const RootStack = createStackNavigator(
 
 const AppContainer = createAppContainer(RootStack)
 
-const styles = StyleSheet.create({
-  container: {
+const styles = StyleSheet.create(
+  {
+  container: 
+  {
     flex: 1,
     backgroundColor: '#2D5363',
     alignItems: 'center',
