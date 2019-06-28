@@ -1,4 +1,9 @@
 import React from 'react';
+import { createStore, applyMiddleware } from 'redux';
+import { logger } from 'redux-logger';
+import { Provider} from 'react-redux';
+import Reducers from './reducers/';
+import LoginForm from './components/LoginForm';
 import { Button, StyleSheet, Text, View, Image } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation'
 
@@ -95,6 +100,7 @@ class DetailsScreen extends React.Component
 const RootStack = createStackNavigator(
   {
     Home: {screen: HomeScreen},
+    LogIn: {screen: LoginForm},
     Details: {screen: DetailsScreen},
   },
   {
@@ -126,6 +132,13 @@ export default class App extends React.Component
 {
   render()
   {
-    return <AppContainer />
+    return(
+    <Provider store={createStore(Reducers, applyMiddleware(logger))}>
+      <View>
+        <LoginForm/>
+        <AppContainer/>
+      </View>
+    </Provider>
+    )
   }
 }
