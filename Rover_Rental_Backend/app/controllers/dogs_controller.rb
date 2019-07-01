@@ -17,7 +17,7 @@ class DogsController < ApplicationController
     end
 
     def update
-      @dog.update(note_params)
+      @dog.update(dog_params)
       if @dog.save
         render json: @dog, status: :accepted
       else

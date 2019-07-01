@@ -3,12 +3,12 @@ class WalksController < ApplicationController
     before_action :find_walk, only: [:update, :destroy]
 
     def index
-      @walks = walk.all
+      @walks = Walk.all
       render json: @walks
     end
 
     def create
-      @walk = walk.new(walk_params)
+      @walk = Walk.new(walk_params)
       if @walk.save
         render json: @walk, status: :accepted
       else
@@ -17,7 +17,7 @@ class WalksController < ApplicationController
     end
 
     def update
-      @walk.update(note_params)
+      @walk.update(walk_params)
       if @walk.save
         render json: @walk, status: :accepted
       else
@@ -37,7 +37,7 @@ class WalksController < ApplicationController
     end
    
     def find_walk
-      @walk = walk.find(params[:id])
+      @walk = Walk.find(params[:id])
     end
     
 end

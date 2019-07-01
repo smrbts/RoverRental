@@ -1,4 +1,5 @@
 class Dog < ApplicationRecord
     has_many :walks
-    has_many :users, though :walks
-  end
+    has_many :users, through: :walks
+
+end

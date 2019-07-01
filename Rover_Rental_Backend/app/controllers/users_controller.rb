@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     end
 
     def update
-      @user.update(note_params)
+      @user.update(user_params)
       if @user.save
         render json: @user, status: :accepted
       else
