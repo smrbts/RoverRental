@@ -25,7 +25,7 @@ class WelcomeScreen extends Component
   render() 
   {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={styles.container}>
         <Button title="Login" onPress={() => this.props.navigation.navigate('Dashboard')}/>
         <Button title="Sign Up" onPress={() => alert('button pressed')}/>
       </View>
@@ -51,7 +51,7 @@ class Search extends Component
   {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Search</Text>
+        <Button title="Go to Details Screen" onPress={() => this.props.navigation.navigate('Detail')} />
       </View>
     );
   }
@@ -81,17 +81,86 @@ class Settings extends Component
   }
 }
 
+const Detail = (props) => (
+  <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <Text>Detail</Text>
+  </View>
+)
+
+const SearchStack = createStackNavigator({
+  Search:{
+    screen: Search,
+    navigationOptions: ({navigation}) => {
+      return{
+        headerTitle: 'Search',
+        headerLeft: (
+          <Icon style={{paddingLeft:10}}
+         onPress={() => navigation.openDrawer()}
+         name="md-menu" 
+         size={30}
+         />
+        )
+      }
+    }
+  },
+  Detail:{
+    screen: Detail
+  }
+},
+{
+  defaultNavigationOptions:{
+    gesturesEnabled: false
+  }
+})
+
+const ProfileStack = createStackNavigator({
+  Profile:{
+    screen: Profile,
+    navigationOptions: ({navigation}) => {
+      return{
+        headerTitle: 'Profile',
+        headerLeft: (
+          <Icon style={{paddingLeft:10}}
+         onPress={() => navigation.openDrawer()}
+         name="md-menu" 
+         size={30}
+         />
+        )
+      }
+    }
+  }
+})
+
+const SettingsStack = createStackNavigator({
+  Settings:{
+    screen: Settings,
+    navigationOptions: ({navigation}) => {
+      return{
+        headerTitle: 'Settings',
+        headerLeft: (
+          <Icon style={{paddingLeft:10}}
+         onPress={() => navigation.openDrawer()}
+         name="md-menu" 
+         size={30}
+         />
+        )
+      }
+    }
+  }
+})
+
 
 const DashboardTabNavigator = createBottomTabNavigator({
-  Search,
-  Profile,
-  Settings
+  SearchStack,
+  ProfileStack,
+  SettingsStack
 },
 {
   navigationOptions:({navigation}) => 
   {
     const {routeName} = navigation.state.routes[navigation.state.index]
     return{
+      header: null,
       headerTitle: routeName
     }
   }
@@ -123,20 +192,26 @@ const AppDrawerNavigator = createDrawerNavigator({
 
 
 const AppSwitchNavigator = createSwitchNavigator({
-  Welcome:{screen:WelcomeScreen},
-  Dashboard:{screen:AppDrawerNavigator}
+  Welcome:
+  {
+    screen:WelcomeScreen
+  },
+  Dashboard:
+  {
+    screen:AppDrawerNavigator
+  }
 })
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
 
-// const styles = Stylesheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//     justifyContent: 'center'
-//   }
-// })
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFF1D0',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+})
 
 
 
