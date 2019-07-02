@@ -1,168 +1,184 @@
-import React from 'react';
-import { Button, Image, View, Text } from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation'; // 1.0.0-beta.27
+import React, {Component} from 'react';
+import {View, Text, StyleSheet, Button} from 'react-native'
+import Icon from '@expo/vector-icons/Ionicons'
+import {
+  createSwitchNavigator, 
+  createAppContainer, 
+  createDrawerNavigator,
+  createBottomTabNavigator,
+  createStackNavigator,
+} from 'react-navigation'
 
-class LogoTitle extends React.Component {
-  render() {
-    return (
-      <Image
-        source={require('./assets/Dog.png')}
-        style={{ width: 30, height: 30 }}
-      />
-    );
+
+export default class App extends Component 
+{
+  render()
+  {
+    return(
+      <AppContainer/>
+    )
   }
 }
 
-class HomeScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    const params = navigation.state.params || {};
-
-    return {
-      headerTitle: <LogoTitle />,
-      headerLeft: (
-        <Button
-          onPress={() => navigation.navigate('MyModal')}
-          title="Info"
-          color="#fff"
-        />
-      ),
-      headerRight: (
-        <Button onPress={params.increaseCount} title="+1" color="#fff" />
-      ),
-    };
-  };
-
-  componentWillMount() {
-    this.props.navigation.setParams({ increaseCount: this._increaseCount });
-  }
-
-  state = {
-    count: 0,
-  };
-
-  _increaseCount = () => {
-    this.setState({ count: this.state.count + 1 });
-  };
-
-  render() {
+class WelcomeScreen extends Component 
+{
+  render() 
+  {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-        <Text>Count: {this.state.count}</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => {
-            /* 1. Navigate to the Details route with params */
-            this.props.navigation.navigate('Details', {
-              itemId: 86,
-              otherParam: 'First Details',
-            });
-          }}
-        />
+        <Button title="Login" onPress={() => this.props.navigation.navigate('Dashboard')}/>
+        <Button title="Sign Up" onPress={() => alert('button pressed')}/>
       </View>
     );
   }
 }
 
-class DetailsScreen extends React.Component {
-  static navigationOptions = ({ navigation, navigationOptions }) => {
-    const { params } = navigation.state;
-
-    return {
-      title: params ? params.otherParam : 'A Nested Details Screen',
-      /* These values are used instead of the shared configuration! */
-      headerStyle: {
-        backgroundColor: navigationOptions.headerTintColor,
-      },
-      headerTintColor: navigationOptions.headerStyle.backgroundColor,
-    };
-  };
-
-  render() {
-    /* 2. Read the params from the navigation state */
-    const { params } = this.props.navigation.state;
-    const itemId = params ? params.itemId : null;
-    const otherParam = params ? params.otherParam : null;
-
+class DashboardScreen extends Component 
+{
+  render() 
+  {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-        <Text>itemId: {JSON.stringify(itemId)}</Text>
-        <Text>otherParam: {JSON.stringify(otherParam)}</Text>
-        <Button
-          title="Update the title"
-          onPress={() =>
-            this.props.navigation.setParams({ otherParam: 'Updated!' })}
-        />
-        <Button
-          title="Go to Details... again"
-          onPress={() => this.props.navigation.navigate('Details')}
-        />
-        <Button
-          title="Go back"
-          onPress={() => this.props.navigation.goBack()}
-        />
+        <Text>DashboardScreen</Text>
       </View>
     );
   }
 }
 
-class ModalScreen extends React.Component {
-  render() {
+class Search extends Component 
+{
+  render() 
+  {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ fontSize: 30 }}>This is a modal!</Text>
-        <Button
-          onPress={() => this.props.navigation.goBack()}
-          title="Dismiss"
-        />
+        <Text>Search</Text>
       </View>
     );
   }
 }
 
-const MainStack = createStackNavigator(
+class Profile extends Component 
+{
+  render() 
   {
-    Home: {
-      screen: HomeScreen,
-    },
-    Details: {
-      screen: DetailsScreen,
-    },
-  },
-  {
-    initialRouteName: 'Home',
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: '#f4511e',
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    },
-  }
-);
-
-const RootStack = createStackNavigator(
-  {
-    Main: {
-      screen: MainStack,
-    },
-    MyModal: {
-      screen: ModalScreen,
-    },
-  },
-  {
-    mode: 'modal',
-    headerMode: 'none',
-  }
-);
-
-const AppContainer = createAppContainer(RootStack);
-
-export default class App extends React.Component {
-  render() {
-    return <AppContainer />;
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Profile</Text>
+      </View>
+    );
   }
 }
+
+class Settings extends Component 
+{
+  render() 
+  {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Settings</Text>
+      </View>
+    );
+  }
+}
+
+
+const DashboardTabNavigator = createBottomTabNavigator({
+  Search,
+  Profile,
+  Settings
+},
+{
+  navigationOptions:({navigation}) => 
+  {
+    const {routeName} = navigation.state.routes[navigation.state.index]
+    return{
+      headerTitle: routeName
+    }
+  }
+})
+
+const DashboardStackNavigator = createStackNavigator({
+  DashboardTabNavigator: DashboardTabNavigator
+},
+{
+  defaultNavigationOptions:({navigation}) => 
+  {
+    return{
+      headerLeft:(
+        <Icon style={{paddingLeft:10}}
+         onPress={() => navigation.openDrawer()}
+         name="md-menu" 
+         size={30}
+         />
+      )
+    }
+  }
+})
+
+const AppDrawerNavigator = createDrawerNavigator({
+  Dashboard:{
+    screen: DashboardStackNavigator
+  }
+})
+
+
+const AppSwitchNavigator = createSwitchNavigator({
+  Welcome:{screen:WelcomeScreen},
+  Dashboard:{screen:AppDrawerNavigator}
+})
+
+const AppContainer = createAppContainer(AppSwitchNavigator);
+
+// const styles = Stylesheet.create({
+//   container: {
+//     flex: 1,
+//     alignItems: 'center',
+//     justifyContent: 'center'
+//   }
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
