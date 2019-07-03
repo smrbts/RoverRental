@@ -9,10 +9,10 @@ import {
 
   export default class SignInScreen extends React.Component 
   {
-    signIn = async () => 
+    _signInAsync = async () => 
     {
       await AsyncStorage.setItem('userToken', '123456789')
-        this.props.navigation.navigate('Authloading')
+      this.props.navigation.navigate('App')
     }
 
     render() 
@@ -20,7 +20,7 @@ import {
       return (
         <View style={styles.container}>
          <TouchableOpacity
-          onPress={this.signIn}
+          onPress={() => this._signInAsync()}
           style={styles.buttonStyle}>
           <Text style={styles.textStyle}>Complete sign in</Text>
          </TouchableOpacity>

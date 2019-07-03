@@ -9,19 +9,27 @@ import {
 
 export default class AuthLoadingScreen extends React.Component 
 {
-  componentDidMount = async () => 
-  {
-    await this.loadApp()
-  }
 
-  loadApp = async () => 
+  constructor(props)
   {
-    const userToken = await AsyncStorage.getItem('userToken')
-    this.props.navigation.navigate(userToken ? 'App' : 'Auth')
+    super(props)
+    this._bootstrapAsync()
+  }
+  // componentDidMount = async () => 
+  // {
+  //   await this.loadApp()
+  // }
+
+  _bootstrapAsync = async () => 
+  {
+   const userToken = await AsyncStorage.getItem('userToken')
+   console.log(userToken)
+   this.props.navigation.navigate(userToken ? 'App' : 'Auth')
   }
 
   render() 
   {
+    
     return (
       <View style={styles.container}>
         <ActivityIndicator size="large" color="#fff" />

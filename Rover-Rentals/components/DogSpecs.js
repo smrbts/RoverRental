@@ -1,4 +1,7 @@
 import React from 'react'
+import { View, Text, Image, Button, TouchableOpacity} from 'react-native'
+
+
 
 export default class DogSpecs extends React.Component
 {
@@ -7,11 +10,19 @@ export default class DogSpecs extends React.Component
         specs: [],
         isLoading: true
     }
-    
+
     render()
     {
         return(
-            "Here is my dog info!"
+            <View>
+                <Text>Here is my dog info! Woof Woof!</Text>
+                    <TouchableOpacity>
+                        <Button
+                        backgroundColor='#03A9F4'
+                        title="Lets walk together!"
+                        />
+                    </TouchableOpacity>
+            </View>
         )
     }
 }

@@ -8,16 +8,16 @@ import {
 } from 'react-native'
 export default class SettingsScreen extends React.Component 
 {
-    async singOut() 
+    _signOutAsync = async () =>
     {
         await AsyncStorage.clear()
-        this.props.navigation.navigate('Authloading')
+        this.props.navigation.navigate('Auth') 
     }
   render() {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={() => this.singOut()}
+          onPress={() => this._signOutAsync()}
           style={styles.buttonStyle}>
           <Text style={styles.textStyle}>Sign out</Text>
         </TouchableOpacity>

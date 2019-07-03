@@ -18,6 +18,9 @@ import SettingsScreen from './screens/SettingsScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import DogCardScreen from './screens/DogCardScreen'
 
+const WalkURL = 'http://localhost:3000/walks'
+const DogURL = 'http://localhost:3000/dogs'
+
 export default class App extends React.Component 
 {
   constructor()
@@ -132,10 +135,12 @@ const AuthStackNavigator = createStackNavigator({
 
 
 const AppSwitchNavigator = createSwitchNavigator({
-  // screen: name
   AuthLoading: AuthLoadingScreen,
   Auth: AuthStackNavigator, // Auth stack
   App: AppDrawerNavigator, // the App stack
+},
+{
+  initialRouteName: 'AuthLoading'
 })
 
 const AppContainer = createAppContainer(AppSwitchNavigator)

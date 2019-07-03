@@ -19,6 +19,12 @@ export default class DogInfo extends React.Component
             clicked: !this.state.clicked
         })
     }
+
+    componentDidMount()
+    {
+
+    }
+    
     render()
     {
         console.log(this.state.clicked)
@@ -27,17 +33,17 @@ export default class DogInfo extends React.Component
             title='Spot'
             image={require('../assets/Dog.png')}>
             <Text style={{marginBottom: 10}}>
-               Dog Card Sample
+               Want to walk with me? Click below!
             </Text>
             <Button
-                icon={<Icon name='code' color='#ffffff' />}
+                icon={<Icon name='pets' color='#ffffff' />}
                 backgroundColor='#03A9F4'
                 onPress={this.handleSpecsPress}
                 buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                 title={this.state.clicked? "Hide Info" : 'More about me!' }
                 >
-                {this.state.clicked ? <DogSpecs dog = {this.props.dog}/> : null} 
             </Button>
+            {this.state.clicked ? <DogSpecs dog = {this.props.dog}/> : null} 
             </Card>
         )
     }
