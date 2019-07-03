@@ -1,174 +1,215 @@
-// import React from 'react';
-// import { Button, Image, View, Text } from 'react-native';
-// import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation'; // 1.0.0-beta.27
+import React, {Component} from 'react';
+// import {View, Text, StyleSheet, Button} from 'react-native'
+// import Icon from '@expo/vector-icons/Ionicons'
+// import {
+//   createSwitchNavigator, 
+//   createAppContainer, 
+//   createDrawerNavigator,
+//   createBottomTabNavigator,
+//   createStackNavigator,
+// } from 'react-navigation'
 
-// class LogoTitle extends React.Component {
-//   render() {
-//     return (
-//       <Image
-//         source={require('./assets/Dog.png')}
-//         style={{ width: 30, height: 30 }}
-//       />
-//     );
-//   }
-// }
 
-// class HomeScreen extends React.Component {
-//   static navigationOptions = ({ navigation }) => 
+// export default class App extends Component 
+// {
+//   render()
 //   {
-//     const params = navigation.state.params || {};
-
-//     return {
-//       headerTitle: <LogoTitle />,
-//       headerLeft: (
-//         <Button
-//           onPress={() => navigation.navigate('MyModal')}
-//           title="Info"
-//           color="#fff"
-//         />
-//       ),
-//       headerRight: (
-//         <Button onPress={params.increaseCount} title="+1" color="#fff" />
-//       ),
-//     };
-//   };
-
-//   componentWillMount() {
-//     this.props.navigation.setParams({ increaseCount: this._increaseCount });
-//   }
-
-//   state = {
-//     count: 0,
-//   };
-
-//   _increaseCount = () => {
-//     this.setState({ count: this.state.count + 1 });
-//   };
-
-//   render() {
-//     return (
-//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-//         <Text>Home Screen</Text>
-//         <Text>Count: {this.state.count}</Text>
-//         <Button
-//           title="View Available Dogs"
-//           onPress={() => {
-//             /* 1. Navigate to the Details route with params */
-//             this.props.navigation.navigate('Details', {
-//               itemId: 86,
-//               otherParam: 'First Details',
-//             });
-//           }}
-//         />
-//       </View>
-//     );
+//     return(
+//       <AppContainer/>
+//     )
 //   }
 // }
 
-// class DetailsScreen extends React.Component {
-//   static navigationOptions = ({ navigation, navigationOptions }) => {
-//     const { params } = navigation.state;
-
-//     return {
-//       title: params ? params.otherParam : 'A Nested Details Screen',
-//       /* These values are used instead of the shared configuration! */
-//       headerStyle: {
-//         backgroundColor: navigationOptions.headerTintColor,
-//       },
-//       headerTintColor: navigationOptions.headerStyle.backgroundColor,
-//     };
-//   };
-
-//   render() {
-//     /* 2. Read the params from the navigation state */
-//     const { params } = this.props.navigation.state;
-//     const itemId = params ? params.itemId : null;
-//     const otherParam = params ? params.otherParam : null;
-
-//     return (
-//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//         <Text>Details Screen</Text>
-//         <Text>itemId: {JSON.stringify(itemId)}</Text>
-//         <Text>otherParam: {JSON.stringify(otherParam)}</Text>
-//         <Button
-//           title="Update the title"
-//           onPress={() =>
-//             this.props.navigation.setParams({ otherParam: 'Updated!' })}
-//         />
-//         <Button
-//           title="Go to Details... again"
-//           onPress={() => this.props.navigation.navigate('Details')}
-//         />
-//         <Button
-//           title="Go back"
-//           onPress={() => this.props.navigation.goBack()}
-//         />
-//       </View>
-//     );
-//   }
-// }
-
-// class ModalScreen extends React.Component {
-//   render() {
-//     return (
-//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//         <Text style={{ fontSize: 30 }}>This is a modal!</Text>
-//         <Button
-//           onPress={() => this.props.navigation.goBack()}
-//           title="Dismiss"
-//         />
-//       </View>
-//     );
-//   }
-// }
-
-// const MainStack = createStackNavigator(
+// class WelcomeScreen extends Component 
+// {
+//   render() 
 //   {
-//     Home: 
-//     {
-//       screen: HomeScreen,
-//     },
-//     Details: 
-//     {
-//       screen: DetailsScreen,
-//     },
+//     return (
+//       <View style={styles.container}>
+//         <Button title="Login" onPress={() => this.props.navigation.navigate('Dashboard')}/>
+//         <Button title="Sign Up" onPress={() => alert('button pressed')}/>
+//       </View>
+//     );
+//   }
+// }
+
+// class DashboardScreen extends Component 
+// {
+//   render() 
+//   {
+//     return (
+//       <View style={styles.container}>
+//         <Text>DashboardScreen</Text>
+//       </View>
+//     );
+//   }
+// }
+
+// class Search extends Component 
+// {
+//   render() 
+//   {
+//     return (
+//       <View style={styles.container}>
+//         <Button title="Go to Details Screen" onPress={() => this.props.navigation.navigate('Detail')} />
+//       </View>
+//     );
+//   }
+// }
+
+// class Profile extends Component 
+// {
+//   render() 
+//   {
+//     return (
+//       <View style={styles.container}>
+//         <Text>Profile</Text>
+//       </View>
+//     );
+//   }
+// }
+
+// class Settings extends Component 
+// {
+//   render() 
+//   {
+//     return (
+//       <View style={styles.container}>
+//         <Text>Settings</Text>
+//       </View>
+//     );
+//   }
+// }
+
+// const Detail = (props) => (
+//   <View style={styles.container}>
+//     <Text>Detail</Text>
+//   </View>
+// )
+
+// const SearchStack = createStackNavigator({
+//   Search:{
+//     screen: Search,
+//     navigationOptions: ({navigation}) => {
+//       return{
+//         headerTitle: 'Search',
+//         headerLeft: (
+//           <Icon style={{paddingLeft:10}}
+//          onPress={() => navigation.openDrawer()}
+//          name="md-menu" 
+//          size={30}
+//          />
+//         )
+//       }
+//     }
 //   },
-//   {
-//     initialRouteName: 'Home',
-//     defaultNavigationOptions: 
-//     {
-//       headerStyle: 
-//       {
-//         backgroundColor: '#06AED5',
-//       },
-//       headerTintColor: '#fff',
-//       headerTitleStyle: 
-//       {
-//         fontWeight: 'bold',
-//       },
-//     },
+//   Detail:{
+//     screen: Detail
 //   }
-// );
+// },
+// {
+//   defaultNavigationOptions:{
+//     gesturesEnabled: false
+//   }
+// })
 
-// const RootStack = createStackNavigator(
+// const ProfileStack = createStackNavigator({
+//   Profile:{
+//     screen: Profile,
+//     navigationOptions: ({navigation}) => {
+//       return{
+//         headerTitle: 'Profile',
+//         headerLeft: (
+//           <Icon style={{paddingLeft:10}}
+//          onPress={() => navigation.openDrawer()}
+//          name="md-menu" 
+//          size={30}
+//          />
+//         )
+//       }
+//     }
+//   }
+// })
+
+// const SettingsStack = createStackNavigator({
+//   Settings:{
+//     screen: Settings,
+//     navigationOptions: ({navigation}) => {
+//       return{
+//         headerTitle: 'Settings',
+//         headerLeft: (
+//           <Icon style={{paddingLeft:10}}
+//          onPress={() => navigation.openDrawer()}
+//          name="md-menu" 
+//          size={30}
+//          />
+//         )
+//       }
+//     }
+//   }
+// })
+
+
+// const DashboardTabNavigator = createBottomTabNavigator({
+//   SearchStack,
+//   ProfileStack,
+//   SettingsStack
+// },
+// {
+//   navigationOptions:({navigation}) => 
 //   {
-//     Main: {
-//       screen: MainStack,
-//     },
-//     MyModal: {
-//       screen: ModalScreen,
-//     },
+//     const {routeName} = navigation.state.routes[navigation.state.index]
+//     return{
+//       header: null,
+//       headerTitle: routeName
+//     }
+//   }
+// })
+
+// const DashboardStackNavigator = createStackNavigator({
+//   DashboardTabNavigator: DashboardTabNavigator
+// },
+// {
+//   defaultNavigationOptions:({navigation}) => 
+//   {
+//     return{
+//       headerLeft:(
+//         <Icon style={{paddingLeft:10}}
+//          onPress={() => navigation.openDrawer()}
+//          name="md-menu" 
+//          size={30}
+//          />
+//       )
+//     }
+//   }
+// })
+
+// const AppDrawerNavigator = createDrawerNavigator({
+//   Dashboard:{screen: DashboardStackNavigator},
+//   Search: SearchStack,
+//   Profile: ProfileStack,
+//   Settings: SettingsStack
+// })
+
+
+// const AppSwitchNavigator = createSwitchNavigator({
+//   Welcome:
+//   {
+//     screen:WelcomeScreen
 //   },
+//   Dashboard:
 //   {
-//     mode: 'modal',
-//     headerMode: 'none',
+//     screen:AppDrawerNavigator
 //   }
-// );
+// })
 
-// const AppContainer = createAppContainer(RootStack);
+// const AppContainer = createAppContainer(AppSwitchNavigator);
 
-// export default class App extends React.Component {
-//   render() {
-//     return <AppContainer />;
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#C6E0FF',
+//     alignItems: 'center',
+//     justifyContent: 'center'
 //   }
-// }
+// })

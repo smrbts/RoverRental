@@ -1,17 +1,35 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native'
-import Icon from '@expo/vector-icons/Ionicons'
-import {
+import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { 
+  createAppContainer,
   createSwitchNavigator, 
-  createAppContainer, 
-  createDrawerNavigator,
-  createBottomTabNavigator,
   createStackNavigator,
+  createDrawerNavigator,
+  createBottomTabNavigator
 } from 'react-navigation'
+import Icon from '@expo/vector-icons/Ionicons'
+import AuthLoadingScreen from './screens/AuthLoadingScreen'
+import WelcomeScreen from './screens/WelcomeScreen'
+import SignUpScreen from './screens/SignUpScreen'
+import SignInScreen from './screens/SignInScreen'
+import ForgetPasswordScreen from './screens/ForgetPasswordScreen'
+import HomeScreen from './screens/HomeScreen'
+import SettingsScreen from './screens/SettingsScreen'
+import ProfileScreen from './screens/ProfileScreen'
+import DogCardScreen from './screens/DogCardScreen'
 
-
-export default class App extends Component 
+export default class App extends React.Component 
 {
+  constructor()
+  {
+    super()
+    this.state = 
+    {
+      dogs: [],
+      walks: [],
+      isLoaded: false,
+    }
+  }
   render()
   {
     return(
@@ -20,240 +38,114 @@ export default class App extends Component
   }
 }
 
-class WelcomeScreen extends Component 
+// Bottom Auth tabs
+const AppTabNavigator = createBottomTabNavigator(
 {
-  render() 
+  Home: 
   {
-    return (
-      <View style={styles.container}>
-        <Button title="Login" onPress={() => this.props.navigation.navigate('Dashboard')}/>
-        <Button title="Sign Up" onPress={() => alert('button pressed')}/>
-      </View>
-    );
-  }
-}
-
-class DashboardScreen extends Component 
-{
-  render() 
-  {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>DashboardScreen</Text>
-      </View>
-    );
-  }
-}
-
-class Search extends Component 
-{
-  render() 
-  {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button title="Go to Details Screen" onPress={() => this.props.navigation.navigate('Detail')} />
-      </View>
-    );
-  }
-}
-
-class Profile extends Component 
-{
-  render() 
-  {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Profile</Text>
-      </View>
-    );
-  }
-}
-
-class Settings extends Component 
-{
-  render() 
-  {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Settings</Text>
-      </View>
-    );
-  }
-}
-
-const Detail = (props) => (
-  <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-    <Text>Detail</Text>
-  </View>
-)
-
-const SearchStack = createStackNavigator({
-  Search:{
-    screen: Search,
-    navigationOptions: ({navigation}) => {
-      return{
-        headerTitle: 'Search',
-        headerLeft: (
-          <Icon style={{paddingLeft:10}}
-         onPress={() => navigation.openDrawer()}
-         name="md-menu" 
-         size={30}
-         />
-        )
-      }
-    }
+    screen: HomeScreen
   },
-  Detail:{
-    screen: Detail
+  Dogs:
+  {
+    screen: DogCardScreen
+  },
+  Profile: 
+  {
+    screen: ProfileScreen
+  },
+  Settings: 
+  {
+    screen: SettingsScreen
   }
-},
-{
-  defaultNavigationOptions:{
-    gesturesEnabled: false
-  }
-})
-
-const ProfileStack = createStackNavigator({
-  Profile:{
-    screen: Profile,
-    navigationOptions: ({navigation}) => {
+},{
+    navigationOptions:({navigation}) => 
+    {
+      const {routeName} = navigation.state.routes[navigation.state.index]
       return{
-        headerTitle: 'Profile',
-        headerLeft: (
-          <Icon style={{paddingLeft:10}}
-         onPress={() => navigation.openDrawer()}
-         name="md-menu" 
-         size={30}
-         />
-        )
+        headerTitle: routeName
       }
     }
-  }
-})
-
-const SettingsStack = createStackNavigator({
-  Settings:{
-    screen: Settings,
-    navigationOptions: ({navigation}) => {
-      return{
-        headerTitle: 'Settings',
-        headerLeft: (
-          <Icon style={{paddingLeft:10}}
-         onPress={() => navigation.openDrawer()}
-         name="md-menu" 
-         size={30}
-         />
-        )
-      }
-    }
-  }
-})
+  })
 
 
-const DashboardTabNavigator = createBottomTabNavigator({
-  SearchStack,
-  ProfileStack,
-  SettingsStack
-},
-{
-  navigationOptions:({navigation}) => 
-  {
-    const {routeName} = navigation.state.routes[navigation.state.index]
-    return{
-      header: null,
-      headerTitle: routeName
-    }
-  }
-})
 
-const DashboardStackNavigator = createStackNavigator({
-  DashboardTabNavigator: DashboardTabNavigator
-},
-{
-  defaultNavigationOptions:({navigation}) => 
-  {
-    return{
-      headerLeft:(
-        <Icon style={{paddingLeft:10}}
-         onPress={() => navigation.openDrawer()}
-         name="md-menu" 
-         size={30}
-         />
+
+
+const AppStackNavigator = createStackNavigator({
+  AppTabNavigator: {
+    screen: AppTabNavigator,
+    // Set the header icon
+    navigationOptions: ({navigation}) => ({
+      headerLeft: (
+        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+          <View style={{paddingHorizontal: 10}}>
+            <Icon name='md-menu' size={24}/>
+          </View>
+        </TouchableOpacity>
       )
-    }
+    })
   }
 })
 
+
+// App stack for the drawer
 const AppDrawerNavigator = createDrawerNavigator({
-  Dashboard:{
-    screen: DashboardStackNavigator
-  }
+  RoverRentals: AppStackNavigator,
+  Home: HomeScreen,
+  Dogs: DogCardScreen,
+  Profile: ProfileScreen,
+  Settings: SettingsScreen
+})
+
+// Auth stack
+const AuthStackNavigator = createStackNavigator({
+  Welcome: 
+  {
+    screen: WelcomeScreen,
+    navigationOptions: () => ({
+      title: `Welcome to RoverRentals`, // for the header screen
+      headerBackTitle: 'Back'
+    }),
+  },
+  SignUp: 
+  {
+    screen: SignUpScreen,
+    navigationOptions: () => ({
+      title: `Create a new account`,
+    }),
+  },
+  SignIn: 
+  {
+    screen: SignInScreen,
+    navigationOptions: () => ({
+      title: `Log in to your account`,
+    }),
+  },
+  ForgetPassword: 
+  {
+    screen: ForgetPasswordScreen,
+    navigationOptions: () => ({
+      title: `Create a new password`,
+    }),
+  },
 })
 
 
 const AppSwitchNavigator = createSwitchNavigator({
-  Welcome:
-  {
-    screen:WelcomeScreen
-  },
-  Dashboard:
-  {
-    screen:AppDrawerNavigator
-  }
+  // screen: name
+  AuthLoading: AuthLoadingScreen,
+  Auth: AuthStackNavigator, // Auth stack
+  App: AppDrawerNavigator, // the App stack
 })
 
-const AppContainer = createAppContainer(AppSwitchNavigator);
+const AppContainer = createAppContainer(AppSwitchNavigator)
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF1D0',
+    backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

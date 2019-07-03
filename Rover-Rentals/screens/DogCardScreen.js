@@ -3,17 +3,24 @@ import {
   StyleSheet,
   View,
   Text,
+  Button,
 } from 'react-native'
-export default class ProfileScreen extends React.Component 
-{
-  render() {
+import DogInfo from '../components/DogInfo'
+
+
+export default class DogCardScreen extends React.Component 
+{ 
+  
+  render() 
+  {
     return (
       <View style={styles.container}>
-        <Text>Profile Screen</Text>
+        <DogInfo/>
       </View>
     )
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
