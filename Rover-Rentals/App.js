@@ -5,7 +5,7 @@ import {
   createSwitchNavigator, 
   createStackNavigator,
   createDrawerNavigator,
-  createBottomTabNavigator
+  createMaterialTopTabNavigator
 } from 'react-navigation'
 import Icon from '@expo/vector-icons/Ionicons'
 import AuthLoadingScreen from './screens/AuthLoadingScreen'
@@ -41,34 +41,86 @@ export default class App extends React.Component
   }
 }
 
-// Bottom Auth tabs
-const AppTabNavigator = createBottomTabNavigator(
-{
-  Home: 
-  {
-    screen: HomeScreen
-  },
-  Dogs:
-  {
-    screen: DogCardScreen
-  },
-  Profile: 
-  {
-    screen: ProfileScreen
-  },
-  Settings: 
-  {
-    screen: SettingsScreen
-  }
-},{
-    navigationOptions:({navigation}) => 
-    {
-      const {routeName} = navigation.state.routes[navigation.state.index]
-      return{
-        headerTitle: routeName
-      }
+// Configurations and options for the AppTabNavigator
+const configurations = {
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: {
+      tabBarLabel: 'Home',
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="ios-home" style={{fontSize: 26, color: tintColor}} />
+      )
     }
-  })
+  },
+  Dogs: {
+    screen: DogCardScreen,
+    navigationOptions: {
+      tabBarLabel: 'Dogs',
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="ios-paw" style={{fontSize: 26, color: tintColor}} />
+      )
+    }
+  },
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: {
+      tabBarLabel: 'Profile',
+      tabBarIcon: ({tintColor}) => (
+        <Icon name="ios-person" style={{fontSize: 26, color: tintColor}} />
+      )
+    }
+  },
+  Settings: {
+    screen: SettingsScreen,
+    navigationOptions: {
+      tabBarLabel: 'Settings',
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="ios-settings" style={{fontSize: 26, color: tintColor}} />
+      )
+    }
+  },
+}
+
+const options = {
+  tabBarPosition: 'bottom',
+  swipeEnabled: true,
+  animationEnabled: true,
+  navigationOptions: {
+    tabBarVisible: true
+  },
+  tabBarOptions: {
+    showLabel: true,
+    activeTintColor: '#fff',
+    inactiveTintColor: '#a8abaf',
+    style: {
+      backgroundColor: '#134074',
+      borderTopWidth: 1,
+      borderTopColor: '#ff99',//'#667292',
+      paddingBottom: 0
+    },
+    labelStyle: {
+      fontSize: 12,
+      fontWeight: 'bold',
+      marginBottom: 12,
+      marginTop:12,
+    },
+    indicatorStyle: {
+      height: 0,
+    },
+    showIcon: true,
+    
+  }
+}
+// New bottom App tabs design
+const AppTabNavigator = createMaterialTopTabNavigator(configurations, options)
+// Making the common header title dynamic in AppTabNavigator
+AppTabNavigator.navigationOptions = ({ navigation }) => {
+  let { routeName } =   navigation.state.routes[navigation.state.index]
+  let headerTitle = routeName
+  return {
+    headerTitle,
+  }
+}
 
 
 
@@ -79,10 +131,12 @@ const AppStackNavigator = createStackNavigator({
     screen: AppTabNavigator,
     // Set the header icon
     navigationOptions: ({navigation}) => ({
+      headerStyle:{backgroundColor: '#8DA9C4'},
+      headerTitleStyle:{fontWeight: 'bold', fontSize: 21, fontFamily: 'GillSans', color: '#fff'},
       headerLeft: (
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-          <View style={{paddingHorizontal: 10}}>
-            <Icon name='md-menu' size={24}/>
+          <View style={{paddingHorizontal: 10,}}>
+            <Icon name='md-menu' size={24} color='#fff'/>
           </View>
         </TouchableOpacity>
       )
@@ -106,8 +160,11 @@ const AuthStackNavigator = createStackNavigator({
   {
     screen: WelcomeScreen,
     navigationOptions: () => ({
-      title: `Welcome to RoverRentals`, // for the header screen
-      headerBackTitle: 'Back'
+      title: `Welcome to RoverRentals!`, // for the header screen
+      headerStyle:{backgroundColor: '#8DA9C4'},
+      headerTitleStyle:{fontWeight: 'bold', fontSize: 21, fontFamily: 'GillSans', color: '#fff'},
+      headerBackTitle: 'Back',
+      headerBackTitleStyle: {color: '#fff'}
     }),
   },
   SignUp: 
@@ -115,6 +172,10 @@ const AuthStackNavigator = createStackNavigator({
     screen: SignUpScreen,
     navigationOptions: () => ({
       title: `Create a new account`,
+      headerStyle:{backgroundColor: '#8DA9C4'},
+      headerTitleStyle:{fontWeight: 'bold', fontSize: 15, fontFamily: 'GillSans', color: '#fff'},
+      headerBackTitle: 'Back',
+      headerBackTitleStyle: {color: '#fff'}
     }),
   },
   SignIn: 
@@ -122,6 +183,10 @@ const AuthStackNavigator = createStackNavigator({
     screen: SignInScreen,
     navigationOptions: () => ({
       title: `Log in to your account`,
+      headerStyle:{backgroundColor: '#8DA9C4'},
+      headerTitleStyle:{fontWeight: 'bold', fontSize: 15, fontFamily: 'GillSans', color: '#fff'},
+      headerBackTitle: 'Back',
+      headerBackTitleStyle: {color: '#fff'}
     }),
   },
   ForgetPassword: 
@@ -129,6 +194,10 @@ const AuthStackNavigator = createStackNavigator({
     screen: ForgetPasswordScreen,
     navigationOptions: () => ({
       title: `Create a new password`,
+      headerStyle:{backgroundColor: '#8DA9C4'},
+      headerTitleStyle:{fontWeight: 'bold', fontSize: 15, fontFamily: 'GillSans', color: '#fff'},
+      headerBackTitle: 'Back',
+      headerBackTitleStyle: {color: '#fff'}
     }),
   },
 })

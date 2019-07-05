@@ -9,7 +9,7 @@ require "rest-client"
 require "json"
 require "faker"
 
-Dogs.destroy_all
+Dog.destroy_all
 
 10.times do
     Dog.create(name: Faker::Creature::Dog.name, age: rand(1..10), gender: Faker::Creature::Dog.gender, breed: Faker::Creature::Dog.breed)

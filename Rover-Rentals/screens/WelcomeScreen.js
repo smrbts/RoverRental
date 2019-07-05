@@ -4,8 +4,10 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Image
 } from 'react-native'
 
+const logo = require('../assets/Dog.png')
 export default class WelcomeScreen extends React.Component 
 {
   handleRoute = async (destination) => {
@@ -15,20 +17,22 @@ export default class WelcomeScreen extends React.Component
   {
     return (
       <View style={styles.container}>
+      {/* App Logo */}
+      <Image source={logo}/>
         <TouchableOpacity 
           onPress={() => this.props.navigation.navigate('SignUp')}
           style={styles.buttonStyle}>
-          <Text style={styles.textStyle}>Sign up</Text>
+          <Text style={styles.buttonText}>Sign up</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           onPress={() => this.props.navigation.navigate('SignIn')}
           style={styles.buttonStyle}>
-          <Text style={styles.textStyle}>Sign in</Text>
+          <Text style={styles.buttonText}>Sign in</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           onPress={() => this.props.navigation.navigate('ForgetPassword')}
           style={styles.buttonStyle}>
-          <Text style={styles.textStyle}>Forget password ?</Text>
+          <Text style={styles.buttonText}>Forget password ?</Text>
         </TouchableOpacity>
       </View>
     )
@@ -38,15 +42,21 @@ export default class WelcomeScreen extends React.Component
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#06AED5',
+    backgroundColor: '#71A9F7',
     alignItems: 'center',
     justifyContent: 'center',
   },
   buttonStyle: {
-    padding: 20,
+    alignItems: 'center',
+    backgroundColor: '#0B2545',
+    padding: 14,
+    marginBottom: 20,
+    borderRadius: 24,
   },
-  textStyle: {
+  buttonText: {
     fontSize: 18,
-    padding: 10
-  }
+    fontWeight: 'bold',
+    fontFamily: 'GillSans',
+    color: "#fff",
+  },
 })

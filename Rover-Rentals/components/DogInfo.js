@@ -39,7 +39,7 @@ export default class DogInfo extends React.Component
                 icon={<Icon name='pets' color='#ffffff' />}
                 backgroundColor='#03A9F4'
                 onPress={this.handleSpecsPress}
-                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, backgroundColor: '#8DA9C4'}}
                 title={this.state.clicked? "Hide Info" : 'More about me!' }
                 >
             </Button>
