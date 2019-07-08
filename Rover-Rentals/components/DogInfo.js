@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
-import DogSpecs from './DogSpecs'
+import DogSpecScreen from './DogSpecScreen'
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 
 
@@ -43,7 +43,7 @@ export default class DogInfo extends React.Component
                 title={this.state.clicked? "Hide Info" : 'More about me!' }
                 >
             </Button>
-            {this.state.clicked ? <DogSpecs dog = {this.props.dog}/> : null} 
+            {this.state.clicked ? <DogSpecScreen dog = {this.props.dog} navigation={this.props.navigation}/> : null} 
             </Card>
         )
     }

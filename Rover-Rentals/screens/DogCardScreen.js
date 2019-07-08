@@ -13,9 +13,10 @@ export default class DogCardScreen extends React.Component
   
   render() 
   {
+    const {navigation} = this.props
     return (
       <View style={styles.container}>
-        <DogInfo/>
+        <DogInfo navigation={this.props.navigation} />
       </View>
     )
   }

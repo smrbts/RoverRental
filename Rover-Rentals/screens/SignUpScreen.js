@@ -107,6 +107,7 @@ import {
                       style={styles.iconStyle}
                     />
                     <Input
+                      id="username"
                       style={styles.input}
                       placeholder='Username'
                       placeholderTextColor='#adb4bc'
@@ -128,6 +129,7 @@ import {
                       style={styles.iconStyle}
                     />
                     <Input
+                      id="password"
                       style={styles.input}
                       placeholder='Password'
                       placeholderTextColor='#adb4bc'
@@ -149,6 +151,7 @@ import {
                       style={styles.iconStyle}
                     />
                     <Input
+                      id="email"
                       style={styles.input}
                       placeholder='Email'
                       placeholderTextColor='#adb4bc'
@@ -170,6 +173,7 @@ import {
                       style={styles.iconStyle}
                     />
                     <Input
+                      id="phoneNumber"
                       style={styles.input}
                       placeholder='999-999-9999'
                       placeholderTextColor='#adb4bc'
@@ -198,6 +202,7 @@ import {
                       style={styles.iconStyle}
                     />
                     <Input
+                      id="authCode"
                       style={styles.input}
                       placeholder='Confirmation code'
                       placeholderTextColor='#adb4bc'

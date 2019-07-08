@@ -105,6 +105,7 @@ import {
                       style={styles.iconStyle}
                     />
                     <Input
+                      id='username'
                       style={styles.input}
                       placeholder='username'
                       placeholderTextColor='#adb4bc'
@@ -123,6 +124,7 @@ import {
                       style={styles.iconStyle}
                     />
                     <Input
+                      id='password'
                       style={styles.input}
                       placeholder='Password'
                       placeholderTextColor='#adb4bc'

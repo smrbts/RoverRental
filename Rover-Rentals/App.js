@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity,} from 'react-native'
 import { 
   createAppContainer,
   createSwitchNavigator, 
@@ -7,6 +7,7 @@ import {
   createDrawerNavigator,
   createMaterialTopTabNavigator
 } from 'react-navigation'
+import { Button, Container, header, Content, Left} from 'native-base'
 import Icon from '@expo/vector-icons/Ionicons'
 import AuthLoadingScreen from './screens/AuthLoadingScreen'
 import WelcomeScreen from './screens/WelcomeScreen'
@@ -17,9 +18,14 @@ import HomeScreen from './screens/HomeScreen'
 import SettingsScreen from './screens/SettingsScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import DogCardScreen from './screens/DogCardScreen'
+import DogSpecScreen from './components/DogSpecScreen'
+import WalkScreen from './components/WalkScreen'
+
 
 const WalkURL = 'http://localhost:3000/walks'
 const DogURL = 'http://localhost:3000/dogs'
+const UserURL = 'http://localhost:3000/users'
+
 
 export default class App extends React.Component 
 {
@@ -28,15 +34,46 @@ export default class App extends React.Component
     super()
     this.state = 
     {
+      currentUser: null,
       dogs: [],
       walks: [],
       isLoaded: false,
     }
   }
+
+  signUp = (e) => 
+  {
+    e.preventdefault()
+    let userObj = 
+    {
+      username: document.querySelector('#username').value,
+      password: document.querySelector('#password').value
+    }
+    fetch(UserURL,{
+      method: 'POST',
+      headers: 
+      {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(userObj)
+    })
+    .then(res =>res.json())
+    .then(data=>
+      {
+        console.log(data)
+      })
+
+  }
+  
+  componentDidMount()
+  {
+
+  }
+
   render()
   {
     return(
-      <AppContainer/>
+      <AppContainer navigation={this.props.navigation}/>
     )
   }
 }
@@ -201,7 +238,6 @@ const AuthStackNavigator = createStackNavigator({
     }),
   },
 })
-
 
 const AppSwitchNavigator = createSwitchNavigator({
   AuthLoading: AuthLoadingScreen,

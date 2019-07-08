@@ -1,5 +1,5 @@
 import React from 'react'
-import WalkReservation from './WalkReservation'
+import WalkScreen from './WalkScreen'
 import { 
     View, 
     Text, 
@@ -12,29 +12,25 @@ import {
 
 
 
-export default class DogSpecs extends React.Component
+export default class DogSpecScreen extends React.Component
 {
-    state = 
-    {
-        specs: [],
-        isLoading: true,
-        modalVisible: false,
-    }
-
-
     render()
     {
+      // console.log(this.props)
         return(
             <View>
                 <Text>Here is my dog info! Woof Woof!</Text>
                     <TouchableOpacity
-                      style={styles.buttonStyle}>
+                      style={styles.buttonStyle}
+                      onPress={() => this.props.navigation.navigate('WalkScreen')}
+                      >
                       <Text style={styles.buttonText}>Let's go for a walk!</Text>
                     </TouchableOpacity>
             </View>
         )
     }
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -56,3 +52,5 @@ const styles = StyleSheet.create({
       color: "#fff",
     },
   })
+
+  
