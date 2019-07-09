@@ -19,7 +19,9 @@ export default class DogSpecScreen extends React.Component
       // console.log(this.props)
         return(
             <View>
-                <Text>Here is my dog info! Woof Woof!</Text>
+                    <Text> Breed: {this.props.dog.breed} </Text>
+                    <Text> Gender: {this.props.dog.gender} </Text>
+                    <Text> Age: {this.props.dog.age} </Text>
                     <TouchableOpacity
                       style={styles.buttonStyle}
                       onPress={() => this.props.navigation.navigate('Walks')}
