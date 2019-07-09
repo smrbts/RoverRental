@@ -41,44 +41,44 @@ export default class App extends React.Component
     }
   }
 
-  signUp = (e) => 
-  {
-    e.preventdefault()
-    let userObj = 
-    {
-      username: document.querySelector('#username').value,
-      password: document.querySelector('#password').value
-    }
-    fetch(UserURL,{
-      method: 'POST',
-      headers: 
-      {
-        'content-type' : 'application/json'
-      },
-      body: JSON.stringify(userObj)
-    })
-    .then(res =>res.json())
-    .then(data=>
-      {
-        console.log(data)
-      })
+  // signUp = (e) => 
+  // {
+  //   e.preventdefault()
+  //   let userObj = 
+  //   {
+  //     username: document.querySelector('#username').value,
+  //     password: document.querySelector('#password').value
+  //   }
+  //   fetch(UserURL,{
+  //     method: 'POST',
+  //     headers: 
+  //     {
+  //       'content-type' : 'application/json'
+  //     },
+  //     body: JSON.stringify(userObj)
+  //   })
+  //   .then(res =>res.json())
+  //   .then(data=>
+  //     {
+  //       console.log(data)
+  //     })
 
-  }
+  // }
   
-  componentDidMount()
-  {
-    fetch(DogURL)
-    .then(res => res.json())
-    .then(data => 
-      {
-        console.log(data)
-        // this.setState({
-        //   dogs: data
-        // })
-      })
+  // componentDidMount()
+  // {
+  //   fetch(DogURL)
+  //   .then(res => res.json())
+  //   .then(data => 
+  //     {
+  //       console.log(data)
+  //       // this.setState({
+  //       //   dogs: data
+  //       // })
+  //     })
 
-  }
-
+  // }
+  
   render()
   {
     return(
