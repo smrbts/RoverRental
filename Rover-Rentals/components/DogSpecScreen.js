@@ -22,7 +22,7 @@ export default class DogSpecScreen extends React.Component
                 <Text>Here is my dog info! Woof Woof!</Text>
                     <TouchableOpacity
                       style={styles.buttonStyle}
-                      onPress={() => this.props.navigation.navigate('WalkScreen')}
+                      onPress={() => this.props.navigation.navigate('Walks')}
                       >
                       <Text style={styles.buttonText}>Let's go for a walk!</Text>
                     </TouchableOpacity>
@@ -31,26 +31,24 @@ export default class DogSpecScreen extends React.Component
     }
 }
 
-
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#71A9F7',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    buttonStyle: {
-      alignItems: 'center',
-      backgroundColor: '#0B2545',
-      padding: 4,
-      marginBottom: 5,
-      borderRadius: 50,
-    },
-    buttonText: {
-      fontSize: 18,
-      fontFamily: 'GillSans',
-      color: "#fff",
-    },
-  })
+  container: {
+    flex: 1,
+    backgroundColor: '#71A9F7',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonStyle: {
+    alignItems: 'center',
+    backgroundColor: '#0B2545',
+    padding: 4,
+    marginBottom: 5,
+    borderRadius: 50,
+  },
+  buttonText: {
+    fontSize: 18,
+    fontFamily: 'GillSans',
+    color: "#fff",
+  },
+})
 
-  

@@ -4,6 +4,7 @@ import {
   View,
   Text,
   Button,
+  ScrollView,
 } from 'react-native'
 import DogInfo from '../components/DogInfo'
 
@@ -13,11 +14,10 @@ export default class DogCardScreen extends React.Component
   
   render() 
   {
-    const {navigation} = this.props
     return (
-      <View style={styles.container}>
-        <DogInfo navigation={this.props.navigation} />
-      </View>
+        <View style={styles.container}>
+          <DogInfo navigation={this.props.navigation} />
+        </View>
     )
   }
 }

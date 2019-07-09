@@ -1,17 +1,39 @@
 import React from 'react'
-import {View, Text, Button} from 'react-native'
+import {View, Text, Button, StyleSheet} from 'react-native'
 
 
 export default class WalkScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ fontSize: 30 }}>This is a modal!</Text>
+      <View style={styles.container}>
+        <Text style={{ fontSize: 30 }}>Please select a time slot below:</Text>
         <Button
-          onPress={() => this.props.navigation.goBack()}
+          style={styles.buttonStyle}
+          onPress={() => this.props.navigation.navigate('Dogs')}
           title="Dismiss"
         />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#71A9F7',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonStyle: {
+    alignItems: 'center',
+    backgroundColor: '#0B2545',
+    padding: 4,
+    marginBottom: 5,
+    borderRadius: 50,
+  },
+  buttonText: {
+    fontSize: 18,
+    fontFamily: 'GillSans',
+    color: "#fff",
+  },
+})

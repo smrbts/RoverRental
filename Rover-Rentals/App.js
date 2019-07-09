@@ -67,6 +67,15 @@ export default class App extends React.Component
   
   componentDidMount()
   {
+    fetch(DogURL)
+    .then(res => res.json())
+    .then(data => 
+      {
+        console.log(data)
+        // this.setState({
+        //   dogs: data
+        // })
+      })
 
   }
 
@@ -159,12 +168,25 @@ AppTabNavigator.navigationOptions = ({ navigation }) => {
   }
 }
 
+const WalkStack = createStackNavigator(
+  {
+    Main: {
+      screen: DogSpecScreen,
+    },
+    Walks: {
+      screen: WalkScreen,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+  )
 
-
-
-
-const AppStackNavigator = createStackNavigator({
-  AppTabNavigator: {
+const AppStackNavigator = createStackNavigator(
+{
+  AppTabNavigator: 
+  {
     screen: AppTabNavigator,
     // Set the header icon
     navigationOptions: ({navigation}) => ({
@@ -178,6 +200,10 @@ const AppStackNavigator = createStackNavigator({
         </TouchableOpacity>
       )
     })
+  },
+  WalkStack:
+  {
+      screen: WalkStack,
   }
 })
 
