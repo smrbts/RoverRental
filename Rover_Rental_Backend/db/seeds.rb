@@ -5,6 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "rest-client"
+require "json"
+require "faker"
+
+Dog.destroy_all
+
+10.times do
+    Dog.create(name: Faker::Creature::Dog.name, age: rand(1..10), gender: Faker::Creature::Dog.gender, breed: Faker::Creature::Dog.breed)
+end
 
 
 
