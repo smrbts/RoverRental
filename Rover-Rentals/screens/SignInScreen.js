@@ -76,6 +76,37 @@ import {
       this.setState({isHidden: false})
     }
 
+    logIn = (e) =>
+    {
+      e.preventDefault()
+      let userObj = {
+        username: this.state.username.value,
+        password: this.state.password.value
+      }
+      fetch('http://localhost:3000/profile',{
+        method: 'GET',
+        headers: 
+        {
+          'Accept': 'application/json',
+          'Content-type' : 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(res=>res.json())
+      .then(data=>
+      {
+        console.log(token)
+        if (data.msg) {
+          console.log(data.msg)
+        }
+        else {
+          localStorage.token = data.token
+          this.props.navigation.navigate('App')
+        }
+      })
+    }
+
+
     render() 
     {
     let { fadeOut, fadeIn, isHidden } = this.state
@@ -139,7 +170,7 @@ import {
                     />
                   </Item>
                   <TouchableOpacity
-                    onPress={() => this._signInAsync()}
+                    onPress={(e) => this.logIn(e)}
                     style={styles.buttonStyle}>
                     <Text style={styles.buttonText}>
                       Sign In

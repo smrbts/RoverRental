@@ -90,12 +90,12 @@ import {
                     isHidden ?
                     <Animated.Image 
                       source={logo} 
-                      style={{ opacity: fadeIn, width: 110.46, height: 117 }}
+                      style={{ opacity: fadeIn}}
                     />
                     :
                     <Animated.Image 
                       source={logo} 
-                      style={{ opacity: fadeOut, width: 110.46, height: 117 }}
+                      style={{ opacity: fadeOut}}
                     />
                   }
                 </View>
@@ -165,65 +165,10 @@ import {
                       onChangeText={value => this.onChangeText('email', value)}
                     />
                   </Item>
-                  {/* phone section  */}
-                  <Item rounded style={styles.itemStyle}>
-                    <Icon
-                      active
-                      name='call'
-                      style={styles.iconStyle}
-                    />
-                    <Input
-                      id="phoneNumber"
-                      style={styles.input}
-                      placeholder='999-999-9999'
-                      placeholderTextColor='#adb4bc'
-                      keyboardType={'phone-pad'}
-                      returnKeyType='done'
-                      autoCapitalize='none'
-                      autoCorrect={false}
-                      secureTextEntry={false}
-                      ref='FourthInput'
-                      value={this.state.phoneNumber}
-                      onChangeText={(val) => this.onChangeText('phoneNumber', val)}
-                    />
-                  </Item>
-                  {/* End of phone input */}
                   <TouchableOpacity
                     style={styles.buttonStyle}>
                     <Text style={styles.buttonText}>
                       Sign Up
-                    </Text>
-                  </TouchableOpacity>
-                  {/* code confirmation section  */}
-                  <Item rounded style={styles.itemStyle}>
-                    <Icon
-                      active
-                      name='md-apps'
-                      style={styles.iconStyle}
-                    />
-                    <Input
-                      id="authCode"
-                      style={styles.input}
-                      placeholder='Confirmation code'
-                      placeholderTextColor='#adb4bc'
-                      keyboardType={'numeric'}
-                      returnKeyType='done'
-                      autoCapitalize='none'
-                      autoCorrect={false}
-                      secureTextEntry={false}
-                      onChangeText={value => this.onChangeText('authCode', value)}
-                    />
-                  </Item>
-                  <TouchableOpacity
-                    style={styles.buttonStyle}>
-                    <Text style={styles.buttonText}>
-                      Confirm Sign Up
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.buttonStyle}>
-                    <Text style={styles.buttonText}>
-                      Resend code
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -244,7 +189,7 @@ import {
     },
     input: {
       flex: 1,
-      fontSize: 17,
+      fontSize: 20,
       fontWeight: 'bold',
       color: '#FCFAFA',
     },
@@ -252,7 +197,7 @@ import {
       position: 'absolute',
       left: 0,
       right: 0,
-      height: 370,
+      height: 200,
       bottom: 25,
       flexDirection: 'row',
       justifyContent: 'center',
@@ -261,7 +206,7 @@ import {
       backgroundColor: '#71A9F7',
     },
     itemStyle: {
-      marginBottom: 10,
+      marginBottom: 20,
     },
     iconStyle: {
       color: '#FCFAFA',
@@ -272,7 +217,7 @@ import {
       alignItems: 'center',
       backgroundColor: '#0B2545',
       padding: 14,
-      marginBottom: 10,
+      marginBottom: 20,
       borderRadius: 24,
     },
     buttonText: {
@@ -285,28 +230,9 @@ import {
       left: 0,
       right: 0,
       height: 600,
-      bottom: 270,
+      bottom: 180,
       alignItems: 'center',
       justifyContent: 'center',
       flex: 1,
     },
-    textStyle: {
-      padding: 5,
-      fontSize: 18
-    },
-    countryStyle: {
-      flex: 1,
-      backgroundColor: '#99ff',
-      borderTopColor: '#211f',
-      borderTopWidth: 1,
-      padding: 12,
-    },
-    closeButtonStyle: {
-      flex: 1,
-      padding: 12,
-      alignItems: 'center', 
-      borderTopWidth: 1,
-      borderTopColor: '#211f',
-      backgroundColor: '#fff3',
-    }
   })

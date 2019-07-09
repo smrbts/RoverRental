@@ -24,7 +24,7 @@ import WalkScreen from './components/WalkScreen'
 
 const WalkURL = 'http://localhost:3000/walks'
 const DogURL = 'http://localhost:3000/dogs'
-const UserURL = 'http://localhost:3000/users'
+const UserURL = 'http://localhost:3000/profile'
 
 
 export default class App extends React.Component 
@@ -34,7 +34,7 @@ export default class App extends React.Component
     super()
     this.state = 
     {
-      currentUser: null,
+      // currentUser: null,
       dogs: [],
       walks: [],
       isLoaded: false,
@@ -60,31 +60,37 @@ export default class App extends React.Component
     .then(res =>res.json())
     .then(data=>
       {
-        console.log(data)
+        localStorage.token = data.token
+        this.setState({
+          currentUser: data.user.id
+        })
+        navigation.navigate('Home')
       })
-
   }
-  
-  componentDidMount()
-  {
-    fetch(DogURL)
-    .then(res => res.json())
-    .then(data => 
-      {
-        console.log(data)
-        // this.setState({
-        //   dogs: data
-        // })
-      })
 
-  }
+ 
+
 
   render()
   {
     return(
-      <AppContainer navigation={this.props.navigation}/>
+      <AppContainer navigation={this.props.navigation} />
     )
   }
+}
+
+const getDogs = () => 
+{
+  fetch(DogURL)
+  .then(res => res.json())
+  .then(data => 
+    {
+      console.log(data)
+      this.setState({
+        dogs: data
+      })
+    })
+
 }
 
 // Configurations and options for the AppTabNavigator
