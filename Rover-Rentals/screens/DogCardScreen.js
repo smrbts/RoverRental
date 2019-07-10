@@ -21,31 +21,6 @@ export default class DogCardScreen extends React.Component
     }
   }
 
-  handleSubmit = (e) => 
-  {
-    e.preventDefault()
-    let walkObj = 
-    {
-      dog: this.state.dogs.id
-    }
-    fetch('http://localhost:3000/walks',
-    {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(walkObj)
-    })
-    .then(res => res.json())
-    .then(data => 
-      {
-        this.setState=(
-          {
-            walks: data
-          })
-      })
-  }
-
     componentDidMount()
     {
       fetch('http://localhost:3000/dogs')

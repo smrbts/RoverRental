@@ -194,7 +194,7 @@ import {
                       Sign Up
                     </Text>
                   </TouchableOpacity>
-                  {/* code confirmation section  */}
+                  {/* code confirmation section 
                   <Item rounded style={styles.itemStyle}>
                     <Icon
                       active
@@ -213,8 +213,8 @@ import {
                       secureTextEntry={false}
                       onChangeText={value => this.onChangeText('authCode', value)}
                     />
-                  </Item>
-                  <TouchableOpacity
+                  </Item> */}
+                  {/* <TouchableOpacity
                     style={styles.buttonStyle}>
                     <Text style={styles.buttonText}>
                       Confirm Sign Up
@@ -225,7 +225,7 @@ import {
                     <Text style={styles.buttonText}>
                       Resend code
                     </Text>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                 </View>
               </Container>
             </View>

@@ -1,39 +1,28 @@
 import React from 'react'
-import {View, Text, Button, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
+import { Card, ListItem, Button, Icon } from 'react-native-elements'
 
 
-export default class WalkScreen extends React.Component {
-  render() {
+export default class WalkScreen extends React.Component 
+{
+  constructor(props)
+  {
+    super(props)
+  }
+
+  render() 
+  {
     return (
-      <View style={styles.container}>
-        <Text style={{ fontSize: 30 }}>Please select a time slot below:</Text>
-        <Button
-          style={styles.buttonStyle}
-          onPress={() => this.props.navigation.navigate('Dogs')}
-          title="Dismiss"
-        />
-      </View>
+     <Card
+            title={this.props.dog.dog.name}
+            image={{uri: 'https://loremflickr.com/320/240/dog'}}
+            imageStyle={{flex:1}}
+            >
+       <Text style={{marginBottom: 10}}>
+          Your walk is scheduled, please follow instructions in the email we sent you!
+       </Text>
+            </Card>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#71A9F7',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonStyle: {
-    alignItems: 'center',
-    backgroundColor: '#0B2545',
-    padding: 4,
-    marginBottom: 5,
-    borderRadius: 50,
-  },
-  buttonText: {
-    fontSize: 18,
-    fontFamily: 'GillSans',
-    color: "#fff",
-  },
-})

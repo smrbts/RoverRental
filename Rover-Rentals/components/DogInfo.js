@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native'
 import DogSpecScreen from './DogSpecScreen'
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 
-const randomDogPic= 'https://dog.ceo/api/breeds/image/random'
+
 export default class DogInfo extends React.Component
 {
     constructor(props)
@@ -32,12 +32,12 @@ export default class DogInfo extends React.Component
     
     render()
     {
-        console.log(this.state.clicked)
         return(
             <Card
             title={this.props.dog.name}
-            image={{uri: 'https://dog.ceo/api/breeds/image/random'}}
+            image={{uri: 'https://loremflickr.com/320/240/dog'}}
             imageStyle={{flex:1}}
+
             >
             <Text style={{marginBottom: 10}}>
                Want to walk with me? Click below!
