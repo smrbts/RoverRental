@@ -31,8 +31,8 @@ gem 'active_model_serializers'
 gem 'json'
 gem 'rest-client'
 gem 'faker'
-gem 'bcrypt'
-gem 'jwt'
+# gem 'bcrypt'
+# gem 'jwt'
 gem 'simple_command'
 
 group :development, :test do

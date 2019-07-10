@@ -6,23 +6,64 @@ import {
     Image, 
     StyleSheet, 
     Button, 
-    Modal,
     TouchableOpacity
 } from 'react-native'
 
 
 
+
 export default class DogSpecScreen extends React.Component
 {
+  constructor(props)
+  {
+    super(props)
+    this.state=
+    {
+      isBooked: false,
+      walks:[{}]
+    }
+  }
+
+
+  handleSubmit = (dog) => 
+  {
+    this.setState(
+      {
+        walks: dog
+      })
+    let walkObj = 
+    {
+      dog_id: this.props.dog.id,
+      user_id: 1,
+    }
+    fetch('http://localhost:3000/walks',
+    {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(walkObj)
+    })
+    .then(res => res.json())
+    .then(data => 
+      {
+        console.log(data)
+      })
+      // .then(this.props.fetchWalkDogs)
+  }
+
+
     render()
     {
-      // console.log(this.props)
+
         return(
             <View>
-                <Text>Here is my dog info! Woof Woof!</Text>
+                    <Text> Breed: {this.props.dog.breed} </Text>
+                    <Text> Gender: {this.props.dog.gender} </Text>
+                    <Text> Age: {this.props.dog.age} </Text>
                     <TouchableOpacity
                       style={styles.buttonStyle}
-                      onPress={() => this.props.navigation.navigate('Walks')}
+                      onPress={() => this.handleSubmit(this.props.dog)}
                       >
                       <Text style={styles.buttonText}>Let's go for a walk!</Text>
                     </TouchableOpacity>

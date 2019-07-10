@@ -22,6 +22,7 @@ import DogSpecScreen from './components/DogSpecScreen'
 import WalkScreen from './components/WalkScreen'
 
 
+
 const WalkURL = 'http://localhost:3000/walks'
 const DogURL = 'http://localhost:3000/dogs'
 const UserURL = 'http://localhost:3000/users'
@@ -41,48 +42,23 @@ export default class App extends React.Component
     }
   }
 
-  // signUp = (e) => 
-  // {
-  //   e.preventdefault()
-  //   let userObj = 
-  //   {
-  //     username: document.querySelector('#username').value,
-  //     password: document.querySelector('#password').value
-  //   }
-  //   fetch(UserURL,{
-  //     method: 'POST',
-  //     headers: 
-  //     {
-  //       'content-type' : 'application/json'
-  //     },
-  //     body: JSON.stringify(userObj)
-  //   })
-  //   .then(res =>res.json())
-  //   .then(data=>
-  //     {
-  //       console.log(data)
-  //     })
-
-  // }
-  
   // componentDidMount()
   // {
   //   fetch(DogURL)
   //   .then(res => res.json())
   //   .then(data => 
   //     {
-  //       console.log(data)
-  //       // this.setState({
-  //       //   dogs: data
-  //       // })
+  //       this.setState({
+  //         dogs: data
+  //       })
   //     })
-
   // }
   
+
   render()
   {
     return(
-      <AppContainer navigation={this.props.navigation}/>
+      <AppContainer navigation={this.props.navigation} />
     )
   }
 }
@@ -106,16 +82,17 @@ const configurations = {
         <Icon name="ios-paw" style={{fontSize: 26, color: tintColor}} />
       )
     }
+
   },
-  Profile: {
-    screen: ProfileScreen,
-    navigationOptions: {
-      tabBarLabel: 'Profile',
-      tabBarIcon: ({tintColor}) => (
-        <Icon name="ios-person" style={{fontSize: 26, color: tintColor}} />
-      )
-    }
-  },
+  // Profile: {
+  //   screen: ProfileScreen,
+  //   navigationOptions: {
+  //     tabBarLabel: 'Profile',
+  //     tabBarIcon: ({tintColor}) => (
+  //       <Icon name="ios-person" style={{fontSize: 26, color: tintColor}} />
+  //     )
+  //   }
+  // },
   Settings: {
     screen: SettingsScreen,
     navigationOptions: {
@@ -213,7 +190,7 @@ const AppDrawerNavigator = createDrawerNavigator({
   RoverRentals: AppStackNavigator,
   Home: HomeScreen,
   Dogs: DogCardScreen,
-  Profile: ProfileScreen,
+  // Profile: ProfileScreen,
   Settings: SettingsScreen
 })
 

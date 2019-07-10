@@ -6,11 +6,16 @@ import { Card, ListItem, Button, Icon } from 'react-native-elements'
 
 export default class DogInfo extends React.Component
 {
-    state = 
+    constructor(props)
     {
-        clicked: false,
-        booked: this.props.booked? true : false
+        super(props)
+        this.state = 
+        {
+            clicked: false,
+            booked: this.props.booked? true : false
+        }
     }
+  
 
     handleSpecsPress = () => 
     {
@@ -27,11 +32,13 @@ export default class DogInfo extends React.Component
     
     render()
     {
-        console.log(this.state.clicked)
         return(
             <Card
-            title='Spot'
-            image={require('../assets/Dog.png')}>
+            title={this.props.dog.name}
+            image={{uri: 'https://loremflickr.com/320/240/dog'}}
+            imageStyle={{flex:1}}
+
+            >
             <Text style={{marginBottom: 10}}>
                Want to walk with me? Click below!
             </Text>
@@ -43,7 +50,7 @@ export default class DogInfo extends React.Component
                 title={this.state.clicked? "Hide Info" : 'More about me!' }
                 >
             </Button>
-            {this.state.clicked ? <DogSpecScreen dog = {this.props.dog} navigation={this.props.navigation}/> : null} 
+            {this.state.clicked ? <DogSpecScreen dog={this.props.dog} navigation={this.props.navigation}/> : null} 
             </Card>
         )
     }
