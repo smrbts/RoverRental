@@ -6,6 +6,7 @@ import {
   Button,
   ScrollView,
 } from 'react-native'
+import {Icon} from 'native-base'
 import DogInfo from '../components/DogInfo'
 
 
@@ -32,7 +33,12 @@ export default class DogCardScreen extends React.Component
           })
         })
     }
-  
+    static navigationOptions = 
+  {
+    drawerIcon: ({tintColor}) => (
+      <Icon name="paw" style={{fontSize:24, color:tintColor}}/>
+    )
+  }
   render() 
   {
     return (

@@ -9,8 +9,9 @@ import {
 import DogCardScreen from './DogCardScreen'
 import DogInfo from '../components/DogInfo'
 import WalkScreen from '../components/WalkScreen'
-import { Card, ListItem, Button, Icon, Image, Text } from 'react-native-elements'
-import { fetchUpdateAsync } from 'expo/build/Updates/Updates';
+import {Icon} from 'native-base'
+import { Card, ListItem, Button, Image, Text } from 'react-native-elements'
+
 
 
 
@@ -63,6 +64,12 @@ fetchWalkDogs = () =>
     this.fetchWalkDogs()
   }
 
+  static navigationOptions = 
+  {
+    drawerIcon: ({tintColor}) => (
+      <Icon name="home" style={{fontSize:24, color:tintColor}}/>
+    )
+  }
   render() 
   {
     return (

@@ -1,10 +1,20 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity,} from 'react-native'
+import { 
+  StyleSheet,
+  Text, 
+  View,
+  TouchableOpacity, 
+  SafeAreaView, 
+  ScrollView, 
+  Dimensions,
+  Image,
+} from 'react-native'
 import { 
   createAppContainer,
   createSwitchNavigator, 
   createStackNavigator,
   createDrawerNavigator,
+  DrawerItems,
   createMaterialTopTabNavigator
 } from 'react-navigation'
 import Icon from '@expo/vector-icons/Ionicons'
@@ -19,7 +29,7 @@ import ProfileScreen from './screens/ProfileScreen'
 import DogCardScreen from './screens/DogCardScreen'
 import DogSpecScreen from './components/DogSpecScreen'
 import WalkScreen from './components/WalkScreen'
-import { Container, Content, List, ListItem } from "native-base";
+
 
 
 
@@ -27,7 +37,7 @@ const WalkURL = 'http://localhost:3000/walks'
 const DogURL = 'http://localhost:3000/dogs'
 const UserURL = 'http://localhost:3000/users'
 
-
+const logo = require('./assets/Rover.png')
 export default class App extends React.Component 
 {
   constructor()
@@ -184,14 +194,33 @@ const AppStackNavigator = createStackNavigator(
   }
 })
 
+const CustomDrawerComponent = (props) => 
+(
+  <SafeAreaView style={{flex:1}}>
+    <View style={{height:150, backgroundColor: '#71A9F7', alignItems: 'center'}}>
+      <Image source={logo} style={{height: 250, width: 250, borderRadius: 60}}/>
+    </View>
+    <ScrollView>
+      <DrawerItems {...props} />
+    </ScrollView>
+  </SafeAreaView>
+)
 
 // App stack for the drawer
-const AppDrawerNavigator = createDrawerNavigator({
+const AppDrawerNavigator = createDrawerNavigator(
+{
   RoverRentals: AppStackNavigator,
   Home: HomeScreen,
   Dogs: DogCardScreen,
   // Profile: ProfileScreen,
   Settings: SettingsScreen
+},
+{
+  contentComponent: CustomDrawerComponent,
+  contentOptions: 
+  {
+    activeTintColor: 'blue'
+  }
 })
 
 // Auth stack

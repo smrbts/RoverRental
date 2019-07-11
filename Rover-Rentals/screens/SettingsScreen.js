@@ -38,6 +38,12 @@ export default class SettingsScreen extends React.Component
         await AsyncStorage.clear()
         this.props.navigation.navigate('Auth') 
     }
+    static navigationOptions = 
+  {
+    drawerIcon: ({tintColor}) => (
+      <Icon name="settings" style={{fontSize:24, color:tintColor}}/>
+    )
+  }
   render() {
     return (
       <SafeAreaView style={styles.container}>
