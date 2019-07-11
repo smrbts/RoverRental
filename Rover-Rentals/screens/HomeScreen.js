@@ -67,7 +67,7 @@ fetchWalkDogs = () =>
   {
     return (
       <View style={styles.container}>
-        <Text h4> View Your Scheduled Walks:</Text>
+        <Text h4 style={{fontFamily: 'GillSans', color: '#fff'}}> View Your Scheduled Walks:</Text>
           <ScrollView style={{flex:1}}
            refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />}
           >

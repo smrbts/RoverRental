@@ -7,7 +7,6 @@ import {
   createDrawerNavigator,
   createMaterialTopTabNavigator
 } from 'react-navigation'
-import { Button, Container, header, Content, Left} from 'native-base'
 import Icon from '@expo/vector-icons/Ionicons'
 import AuthLoadingScreen from './screens/AuthLoadingScreen'
 import WelcomeScreen from './screens/WelcomeScreen'
@@ -20,6 +19,7 @@ import ProfileScreen from './screens/ProfileScreen'
 import DogCardScreen from './screens/DogCardScreen'
 import DogSpecScreen from './components/DogSpecScreen'
 import WalkScreen from './components/WalkScreen'
+import { Container, Content, List, ListItem } from "native-base";
 
 
 

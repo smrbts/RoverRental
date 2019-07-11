@@ -10,6 +10,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   View,
+  Image,
   Alert
 } from 'react-native'
 import {
@@ -20,6 +21,7 @@ import {
 } from 'native-base'
 
 // onPress={() => this._signOutAsync()}
+const logo = require('../assets/Rover.png')
 export default class SettingsScreen extends React.Component 
 {
   state = {

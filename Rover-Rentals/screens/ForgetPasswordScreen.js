@@ -19,7 +19,7 @@ import {
     Icon
   } from 'native-base'
 
-  const logo = require('../assets/Dog.png')
+  const logo = require('../assets/Rover.png')
   export default class ForgetPasswordScreen extends React.Component 
   {
 
@@ -85,9 +85,9 @@ import {
             <View style={styles.logoContainer}>
               {
                 isHidden ?
-                <Animated.Image source={logo} style={{ opacity: fadeIn}}/>
+                <Animated.Image source={logo} style={{ opacity: fadeIn, width: 450, height: 450}}/>
                 :
-                <Animated.Image source={logo} style={{ opacity: fadeOut}}/>
+                <Animated.Image source={logo} style={{ opacity: fadeOut, width: 450, height: 450}}/>
               }
             </View>
               {/* Infos */}

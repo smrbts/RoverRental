@@ -7,7 +7,7 @@ import {
   Image
 } from 'react-native'
 
-const logo = require('../assets/Dog.png')
+const logo = require('../assets/Rover.png')
 export default class WelcomeScreen extends React.Component 
 {
   handleRoute = async (destination) => {
@@ -18,7 +18,10 @@ export default class WelcomeScreen extends React.Component
     return (
       <View style={styles.container}>
       {/* App Logo */}
-      <Image source={logo}/>
+      <Image source={logo}
+      style={{flex: 1, width: 700, height: 700}}
+      resizeMode="contain"
+      />
         <TouchableOpacity 
           onPress={() => this.props.navigation.navigate('SignUp')}
           style={styles.buttonStyle}>
@@ -49,8 +52,9 @@ const styles = StyleSheet.create({
   buttonStyle: {
     alignItems: 'center',
     backgroundColor: '#0B2545',
-    padding: 14,
-    marginBottom: 20,
+    padding: 20,
+    bottom: 150,
+    marginBottom: 30,
     borderRadius: 24,
   },
   buttonText: {

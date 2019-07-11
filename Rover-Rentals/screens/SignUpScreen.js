@@ -21,7 +21,7 @@ import {
     Icon
   } from 'native-base'
 
-  const logo = require('../assets/Dog.png')
+  const logo = require('../assets/Rover.png')
   export default class SignUpScreen extends React.Component 
   {
     state = {
@@ -90,12 +90,12 @@ import {
                     isHidden ?
                     <Animated.Image 
                       source={logo} 
-                      style={{ opacity: fadeIn, width: 110.46, height: 117 }}
+                      style={{ opacity: fadeIn, width: 400, height: 400 }}
                     />
                     :
                     <Animated.Image 
                       source={logo} 
-                      style={{ opacity: fadeOut, width: 110.46, height: 117 }}
+                      style={{ opacity: fadeOut, width: 400, height: 400 }}
                     />
                   }
                 </View>
@@ -284,7 +284,7 @@ import {
       position: 'absolute',
       left: 0,
       right: 0,
-      height: 600,
+      height: 400,
       bottom: 270,
       alignItems: 'center',
       justifyContent: 'center',

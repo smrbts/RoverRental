@@ -22,7 +22,7 @@ import {
 
 
 // onPress={() => this._signInAsync()}
-  const logo = require('../assets/Dog.png')
+  const logo = require('../assets/Rover.png')
   export default class SignInScreen extends React.Component 
   {
     state = 
@@ -89,11 +89,11 @@ import {
             <View style={styles.logoContainer}>
               {
                 isHidden ?
-                <Animated.Image source={logo} style={{ opacity: fadeIn }}/>
+                <Animated.Image source={logo} style={{ opacity: fadeIn, width: 450, height: 450 }}/>
                 :
                 <Animated.Image 
                   source={logo} 
-                  style={{ opacity: fadeOut, width: 113.46, height: 117 }}/>
+                  style={{ opacity: fadeOut, width: 450, height: 450 }}/>
               }
             </View>
               <Container style={styles.infoContainer}>
