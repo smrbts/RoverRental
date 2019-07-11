@@ -197,7 +197,7 @@ const AppStackNavigator = createStackNavigator(
 const CustomDrawerComponent = (props) => 
 (
   <SafeAreaView style={{flex:1}}>
-    <View style={{height:150, backgroundColor: '#71A9F7', alignItems: 'center'}}>
+    <View style={{height:150, backgroundColor: '#fff', alignItems: 'center'}}>
       <Image source={logo} style={{height: 250, width: 250, borderRadius: 60}}/>
     </View>
     <ScrollView>
