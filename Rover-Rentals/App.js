@@ -29,8 +29,7 @@ import ProfileScreen from './screens/ProfileScreen'
 import DogCardScreen from './screens/DogCardScreen'
 import DogSpecScreen from './components/DogSpecScreen'
 import WalkScreen from './components/WalkScreen'
-
-
+import Calendar from './components/Calendar'
 
 
 const WalkURL = 'http://localhost:3000/walks'
@@ -160,8 +159,8 @@ const WalkStack = createStackNavigator(
     Main: {
       screen: DogSpecScreen,
     },
-    Walks: {
-      screen: WalkScreen,
+    Calendar: {
+      screen: Calendar,
     },
   },
   {
