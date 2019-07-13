@@ -1,5 +1,6 @@
 import React from 'react'
 import WalkScreen from './WalkScreen'
+import Calendar from './Calendar'
 import { 
     View, 
     Text, 
@@ -20,10 +21,28 @@ export default class DogSpecScreen extends React.Component
     this.state=
     {
       isBooked: false,
-      walks:[{}]
+      walks:[{}],
+      // modalVisible: false
     }
+    // },this._addModal = this._addModal.bind(this)
   }
 
+  // static navigationOptions = ({ navigation }) => 
+  // {
+  //   const params = navigation.state.params || {};
+  // }
+
+  // _addModal() 
+  // {
+  //   this.setState({modalVisible: true})
+  // }
+
+  // componentDidMount() 
+  // {
+  //   this.props.navigation.setParams({
+  //     addModal: this._addModal
+  //   })
+  // }
 
   handleSubmit = (dog) => 
   {
@@ -55,18 +74,19 @@ export default class DogSpecScreen extends React.Component
 
     render()
     {
-
         return(
             <View>
                     <Text> Breed: {this.props.dog.breed} </Text>
                     <Text> Gender: {this.props.dog.gender} </Text>
                     <Text> Age: {this.props.dog.age} </Text>
+                    <Calendar />
                     <TouchableOpacity
                       style={styles.buttonStyle}
                       onPress={() => this.handleSubmit(this.props.dog)}
                       >
                       <Text style={styles.buttonText}>Let's go for a walk!</Text>
                     </TouchableOpacity>
+                    
             </View>
         )
     }
